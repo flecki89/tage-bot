@@ -51,7 +51,7 @@ function logNextExecution() {
   log('info', 'Next job execution will be at', dayjs(job.nextInvocation()).format());
 }
 
-const job = schedule.scheduleJob('0 9 * * *', () => {
+const job = schedule.scheduleJob(process.env.JOB_SCHEDULE, () => {
   tweet();
 });
 
