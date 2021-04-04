@@ -2,10 +2,10 @@ import dayjs from 'dayjs';
 import { TwitterClient } from 'twitter-api-client';
 import schedule from 'node-schedule';
 import { config } from 'dotenv';
+import { existsSync } from 'fs';
 
-log('log', 'NODE_ENV:', process.env.NODE_ENV);
-if (process.env.NODE_ENV !== 'production') {
-  log('log', 'Load variables from .env file');
+if (existsSync('.env')) {
+  log('log', '.env file exists. Load variables from there.');
   config();
 }
 
