@@ -1,12 +1,19 @@
 import dayjs from 'dayjs';
 import { TwitterClient } from 'twitter-api-client';
 import schedule from 'node-schedule';
+import { config } from 'dotenv';
+
+log('log', 'NODE_ENV:', process.env.NODE_ENV);
+if (process.env.NODE_ENV !== 'production') {
+  log('log', 'Load variables from .env file');
+  config();
+}
 
 const twitterClient = new TwitterClient({
-  apiKey: 'yd0F0RFuTQg134s3zLQkfbBZz',
-  apiSecret: '983QsDRP6BpwC2xF8Rdboh4VojtkIUSIro8l2HfGQRYwAFnB8S',
-  accessToken: '1378483748656779264-rz35pULM40ENERSNDhNrmLSXGpRkOW',
-  accessTokenSecret: 'qT4oCMZ86Q6m13w2bY2C4RsEMTM1YCkjb7pZoEJ6ijNal',
+  apiKey: process.env.TWITTER_API_KEY,
+  apiSecret: process.env.TWITTER_API_SECRET,
+  accessToken: process.env.TWITTER_ACCESS_TOKEN,
+  accessTokenSecret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
 });
 
 function tweet(dryRun = false) {
@@ -44,7 +51,7 @@ function logNextExecution() {
   log('info', 'Next job execution will be at', dayjs(job.nextInvocation()).format());
 }
 
-const job = schedule.scheduleJob('*/5 */1 * * * *', () => {
+const job = schedule.scheduleJob('0 9 * * *', () => {
   tweet();
 });
 

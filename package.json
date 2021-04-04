@@ -2,7 +2,7 @@
   "name": "tagebot",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "dayjs": "^1.10.4",
+    "dotenv": "^8.2.0",
     "node-schedule": "^2.0.0",
     "twitter-api-client": "^1.3.7"
   }
